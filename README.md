@@ -1,2 +1,2 @@
 # libsoftcore
-A HDL resources library for building Soft-Cores
+A HDL resources library for building softcores
