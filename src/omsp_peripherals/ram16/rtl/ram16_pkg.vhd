@@ -10,12 +10,12 @@ package ram16_pkg is
 			DEPTH : positive := 2048
 		);
 		port (
-			clk : std_logic;
-			cen : std_logic;
-			addr : std_logic_vector(log2ceil(DEPTH)-1 downto 0);
-			dout : std_logic_vector(15 downto 0);
-			din : std_logic_vector(15 downto 0);
-			wen : std_logic_vector(1 downto 0)
+			clk : in std_logic;                                      -- Memory clock
+			cen : in std_logic;                                      -- Memory chip enable (low active)
+			addr : in std_logic_vector(log2ceil(DEPTH)-1 downto 0);  -- Memory address
+			din : in std_logic_vector(15 downto 0);                  -- Memory data input
+			wen : in std_logic_vector(1 downto 0);                   -- Memory write enable (low active)
+			dout : out std_logic_vector(15 downto 0)                 -- Memory data output
 		);
 	end component ram16;
 end package ram16_pkg;
