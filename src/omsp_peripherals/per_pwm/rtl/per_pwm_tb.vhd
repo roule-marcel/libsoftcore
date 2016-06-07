@@ -108,15 +108,19 @@ begin
 			wait until rising_edge(tb_mclk);
 		end loop;
 
+		-- PERIOD
 		per_write(15x"0102", x"0040");
 		per_read(15x"0102");
 
+		-- DUTY
 		per_write(15x"0104", x"0010");
 		per_read(15x"0104");
 
+		-- DEAD BAND
 		per_write(15x"0106", x"0002");
 		per_read(15x"0106");
 
+		-- CTRL
 		per_write(15x"0100", x"0001");
 		per_read(15x"0100");
 
