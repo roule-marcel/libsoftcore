@@ -19,28 +19,30 @@ use work.log2_pkg.all;
 --	);
 --end entity ram16;
 architecture rtl of ram16 is
-	type ram16_t is array (natural range <>) of std_logic_vector(15 downto 0);
-	signal ram16 : ram16_t(0 to DEPTH-1); 
+	type ram16_t is array (natural range <>) of std_logic_vector(7 downto 0);
+	signal ram16_l : ram16_t(0 to DEPTH-1); 
+	signal ram16_h : ram16_t(0 to DEPTH-1); 
 	signal rd_addr : std_logic_vector(addr'range);
 begin
 	p_write : process(clk) is
 	begin
 		if rising_edge(clk) then
 			if cen = '0' then
---				if (wen(0) = '0') then
---					s_ram_l(to_integer(unsigned(addr)))<= din(7 downto 0);
---				end if;
---				if (wen(1) = '0') then
---					s_ram_h(to_integer(unsigned(addr)))<= din(15 downto 8);
---				end if;
+				if (wen(0) = '0') then
+					ram16_l(to_integer(unsigned(addr)))<= din(7 downto 0);
+				end if;
+				if (wen(1) = '0') then
+					ram16_h(to_integer(unsigned(addr)))<= din(15 downto 8);
+				end if;
 --				for byte_index in 0 to 1 loop
 --					if (wen(byte_index) = '0' ) then
 --						ram16(to_integer(unsigned(addr)))(byte_index*8+7 downto byte_index*8) <= din(byte_index*8+7 downto byte_index*8);
 --					end if;
 --				end loop;
-				if (wen = "00") then
-					ram16(to_integer(unsigned(addr))) <= din;
-				end if;
+
+--				if (wen = "00") then
+--					ram16(to_integer(unsigned(addr))) <= din;
+--				end if;
 			end if;
 			
 			rd_addr <= addr;
@@ -55,5 +57,5 @@ begin
 ----			end if;
 --		end if;
 --	end process p_read;
-	dout <= ram16(to_integer(unsigned(rd_addr)));
+	dout <= ram16_h(to_integer(unsigned(rd_addr))) & ram16_l(to_integer(unsigned(rd_addr)));
 end architecture rtl;
