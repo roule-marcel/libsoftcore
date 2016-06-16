@@ -9,21 +9,9 @@ use work.ram16_pkg.all;
 entity ram16_tb is
 end entity ram16_tb;
 
---entity ram16 is
---	generic (
---		DEPTH : positive := 2048
---	);
---	port (
---		clk : in std_logic;                                      -- Memory clock
---		cen : in std_logic;                                      -- Memory chip enable (low active)
---		addr : in std_logic_vector(log2ceil(DEPTH)-1 downto 0);  -- Memory address
---		din : in std_logic_vector(15 downto 0);                  -- Memory data input
---		wen : in std_logic_vector(1 downto 0);                   -- Memory write enable (low active)
---		dout : out std_logic_vector(15 downto 0)                 -- Memory data output
---	);
---end entity ram16;
 architecture test_bench of ram16_tb is
 	constant TB_DEPTH : positive := 16;
+	constant TB_INIT_FILE : string := "none";
 
 	signal tb_clk : std_logic;                                      -- Memory clock
 	signal tb_cen : std_logic;                                      -- Memory chip enable (low active)
@@ -36,7 +24,8 @@ architecture test_bench of ram16_tb is
 begin
 	cut: ram16
 		generic map (
-			DEPTH => TB_DEPTH
+			DEPTH => TB_DEPTH,
+			INIT_FILE => TB_INIT_FILE
 		)
 		port map (
 			clk => tb_clk,

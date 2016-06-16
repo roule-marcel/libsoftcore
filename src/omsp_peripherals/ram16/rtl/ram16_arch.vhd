@@ -3,25 +3,13 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 library work;
+use work.ram16_pkg.all;
 use work.log2_pkg.all;
+use work.init_ram16_pkg.all;
 
---entity ram16 is
---	generic (
---		DEPTH : positive := 2048
---	);
---	port (
---		clk : in std_logic;                                      -- Memory clock
---		cen : in std_logic;                                      -- Memory chip enable (low active)
---		addr : in std_logic_vector(log2ceil(DEPTH)-1 downto 0);  -- Memory address
---		din : in std_logic_vector(15 downto 0);                  -- Memory data input
---		wen : in std_logic_vector(1 downto 0);                   -- Memory write enable (low active)
---		dout : out std_logic_vector(15 downto 0)                 -- Memory data output
---	);
---end entity ram16;
 architecture rtl of ram16 is
-	type ram16_t is array (natural range <>) of std_logic_vector(7 downto 0);
-	signal ram16_l : ram16_t(0 to DEPTH-1); 
-	signal ram16_h : ram16_t(0 to DEPTH-1); 
+	signal ram8_l : ram8_t(0 to DEPTH-1) := init_ram8(DEPTH,'l', INIT_FILE) ; 
+	signal ram8_h : ram8_t(0 to DEPTH-1) := init_ram8(DEPTH,'h', INIT_FILE); 
 	signal rd_addr : std_logic_vector(addr'range);
 begin
 	p_write : process(clk) is
@@ -29,10 +17,10 @@ begin
 		if rising_edge(clk) then
 			if cen = '0' then
 				if (wen(0) = '0') then
-					ram16_l(to_integer(unsigned(addr)))<= din(7 downto 0);
+					ram8_l(to_integer(unsigned(addr)))<= din(7 downto 0);
 				end if;
 				if (wen(1) = '0') then
-					ram16_h(to_integer(unsigned(addr)))<= din(15 downto 8);
+					ram8_h(to_integer(unsigned(addr)))<= din(15 downto 8);
 				end if;
 --				for byte_index in 0 to 1 loop
 --					if (wen(byte_index) = '0' ) then
@@ -57,5 +45,5 @@ begin
 ----			end if;
 --		end if;
 --	end process p_read;
-	dout <= ram16_h(to_integer(unsigned(rd_addr))) & ram16_l(to_integer(unsigned(rd_addr)));
+	dout <= ram8_h(to_integer(unsigned(rd_addr))) & ram8_l(to_integer(unsigned(rd_addr)));
 end architecture rtl;

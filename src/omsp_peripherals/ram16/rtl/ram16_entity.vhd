@@ -6,7 +6,8 @@ use work.log2_pkg.all;
 
 entity ram16 is
 	generic (
-		DEPTH : positive := 2048
+		DEPTH : positive := 2048;
+		INIT_FILE : string := "none"
 	);
 	port (
 		clk : in std_logic;                                      -- Memory clock
