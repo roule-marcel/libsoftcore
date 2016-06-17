@@ -8,16 +8,16 @@ package omsp_uart_pkg is
 	component omsp_uart is
 		generic (
 			-- Register base address (must be aligned to decoder bit width)
-			BASE_ADDR : std_logic_vector(14 downto 0) := x"0080";
-			-- Decoder bit width (defines how many bits are considered for address decoding)
-			DEC_WD : positive := 3;
-			-- Register addresses offset
-			CTRL : std_logic_vector(C_DEC_WD-1 downto 0) := 3x"0";
-			STATUS : std_logic_vector(C_DEC_WD-1 downto 0) := 3x"1";
-			BAUD_LO : std_logic_vector(C_DEC_WD-1 downto 0) := 3x"2";
-			BAUD_HI : std_logic_vector(C_DEC_WD-1 downto 0) := 3x"3";
-			DATA_TX : std_logic_vector(C_DEC_WD-1 downto 0) := 3x"4";
-			DATA_RX : std_logic_vector(C_DEC_WD-1 downto 0) := 3x"5"
+			BASE_ADDR : std_logic_vector(14 downto 0) := 15x"0080"
+--			-- Decoder bit width (defines how many bits are considered for address decoding)
+--			DEC_WD : positive := 3;
+--			-- Register addresses offset
+--			CTRL : std_logic_vector(C_DEC_WD-1 downto 0) := 3x"0";
+--			STATUS : std_logic_vector(C_DEC_WD-1 downto 0) := 3x"1";
+--			BAUD_LO : std_logic_vector(C_DEC_WD-1 downto 0) := 3x"2";
+--			BAUD_HI : std_logic_vector(C_DEC_WD-1 downto 0) := 3x"3";
+--			DATA_TX : std_logic_vector(C_DEC_WD-1 downto 0) := 3x"4";
+--			DATA_RX : std_logic_vector(C_DEC_WD-1 downto 0) := 3x"5"
 		);
 		port (
 			irq_uart_rx : out std_logic;                   -- UART receive interrupt
