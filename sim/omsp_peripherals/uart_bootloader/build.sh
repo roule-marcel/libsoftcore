@@ -15,6 +15,6 @@ vcom -2008 $LIBSOFTCORE_PATH/src/omsp_peripherals/per_iface/rtl/per_iface_entity
 vcom -2008 $LIBSOFTCORE_PATH/src/omsp_peripherals/per_iface/rtl/per_iface_arch.vhd
 
 vcom -2008 $LIBSOFTCORE_PATH/src/omsp_peripherals/uart_bootloader/rtl/uart_bootloader_pkg.vhd
-vcom -2008 $LIBSOFTCORE_PATH/src/omsp_peripherals/uart_bootloader/rtl/uart_bootloader_arch.vhd
 vcom -2008 $LIBSOFTCORE_PATH/src/omsp_peripherals/uart_bootloader/rtl/uart_bootloader_entity.vhd
+vcom -2008 $LIBSOFTCORE_PATH/src/omsp_peripherals/uart_bootloader/rtl/uart_bootloader_arch.vhd
 vcom -2008 $LIBSOFTCORE_PATH/src/omsp_peripherals/uart_bootloader/rtl/uart_bootloader_tb.vhd
