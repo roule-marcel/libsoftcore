@@ -31,6 +31,8 @@ architecture testbench of uart_bootloader_tb is
 	signal tb_dma_priority : std_logic;                  -- Direct Memory Access priority (0:low / 1:high)
 	signal tb_dma_we : std_logic_vector(1 downto 0);     -- Direct Memory Access write byte enable (high active)
 
+	signal tb_cpu_reset_n : std_logic;
+
 	signal tb_uart_rxd : std_logic;
 
 	signal simu_ended : boolean := false;
@@ -63,6 +65,8 @@ begin
 			dma_en => tb_dma_en,
 			dma_priority => tb_dma_priority,
 			dma_we => tb_dma_we,
+
+			cpu_reset_n => tb_cpu_reset_n,
 	
 			uart_rxd => tb_uart_rxd
 		);

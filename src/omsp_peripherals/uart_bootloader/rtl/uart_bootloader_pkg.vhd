@@ -39,6 +39,8 @@ package uart_bootloader_pkg is
 			dma_en : out std_logic;                        -- Direct Memory Access enable (high active)
 			dma_priority : out std_logic;                  -- Direct Memory Access priority (0:low / 1:high)
 			dma_we : out std_logic_vector(1 downto 0);     -- Direct Memory Access write byte enable (high active)
+
+			cpu_reset_n : out std_logic;
 	
 			uart_rxd : in std_logic
 		);

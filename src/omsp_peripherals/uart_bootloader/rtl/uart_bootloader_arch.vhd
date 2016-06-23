@@ -109,6 +109,7 @@ begin
 			dma_din <= (others => '0');
 
 			address <= (others => '0');
+			cpu_reset_n <= '1';
 		elsif rising_edge(mclk) then
 			if (reg_ctrl(0) = '0') then
 				address <= unsigned(reg_address);
@@ -119,6 +120,9 @@ begin
 					dma_din <= rxData & rxData;
 				end if;
 				if (dma_ready = '1') then
+					if (address = x"FFFF") then
+						cpu_reset_n <= '0';
+					end if;
 					address <= address + 1;
 					dma_en <= '0';
 				end if;
