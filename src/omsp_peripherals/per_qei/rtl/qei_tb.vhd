@@ -9,17 +9,22 @@ entity qei_tb is
 end entity qei_tb;
 
 architecture testbench of qei_tb is
+	constant TB_STEPS_WIDTH : positive := 32;
+
 	signal tb_clock : std_logic;
 	signal tb_reset : std_logic;
 
 	signal tb_qei_a : std_logic;
 	signal tb_qei_b : std_logic;
 
-	signal tb_steps : signed(15 downto 0);
+	signal tb_steps : signed(TB_STEPS_WIDTH-1 downto 0);
 
 	signal simu_ended : boolean := false;
 begin
 	cut: qei
+		generic map (
+			STEPS_WIDTH => TB_STEPS_WIDTH
+		)
 		port map (
 			clock => tb_clock,
 			reset => tb_reset,
