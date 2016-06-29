@@ -14,8 +14,8 @@ architecture rtl of per_qei is
 
 	signal steps: signed(31 downto 0);
 begin
-	reg_file_in(0) <= std_logic_vector(steps(31 downto 16));
-	reg_file_in(1) <= std_logic_vector(steps(15 downto 0));
+	reg_file_in(0) <= std_logic_vector(steps(15 downto 0));
+	reg_file_in(1) <= std_logic_vector(steps(31 downto 16));
 
 	interface: per_iface
 		generic map (
