@@ -22,9 +22,6 @@ begin
 	addr_match <= '1' when (per_addr(13 downto DEC_WD-1) = BASE_ADDR(14 downto DEC_WD)) else '0';
 	per_select <= addr_match and per_en;
 
-	-- Local address decoder
-	local_address <= to_integer(unsigned(per_addr(DEC_WD-2 downto 0)));
-
 	-- Enable a write
 	per_wren <= per_we(1) and per_we(0);
 
@@ -33,10 +30,20 @@ begin
 	-- A register is being read
 	reg_read <= per_select and not per_wren;
 
-	-- Connections with the peripheral
-	g_demux: for i in reg_file_wren'range generate
-		reg_file_wren(i) <= reg_write when (i = local_address) else '0';
-	end generate g_demux;
 	reg_out <= per_din;
-	per_dout <= reg_file_in(local_address) when reg_read = '1' else (others => '0');
+
+	g_decod_a: if (REG_NB > 1) generate
+		-- Local address decoder
+		local_address <= to_integer(unsigned(per_addr(DEC_WD-2 downto 0)));
+	
+		-- Connections with the peripheral
+		g_demux: for i in reg_file_wren'range generate
+			reg_file_wren(i) <= reg_write when (i = local_address) else '0';
+		end generate g_demux;
+		per_dout <= reg_file_in(local_address) when reg_read = '1' else (others => '0');
+	end generate g_decod_a;
+	g_decod_b: if (REG_NB <= 1) generate
+		reg_file_wren(0) <= reg_write;
+		per_dout <= reg_file_in(0) when reg_read = '1' else (others => '0');
+	end generate g_decod_b;
 end architecture rtl;

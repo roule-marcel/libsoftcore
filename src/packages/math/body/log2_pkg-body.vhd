@@ -2,7 +2,7 @@ package body log2_pkg is
 	function log2ceil (n : natural) return natural is
 		variable n_bit : unsigned(31 downto 0);
 	begin  -- log2ceil
-		if n = 0 then
+		if (n = 0) or (n = 1) then
 			return 0;
 		end if;
 		n_bit := to_unsigned(n-1,32);

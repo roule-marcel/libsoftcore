@@ -121,7 +121,7 @@ begin
 			wait for 5 us;
 		end loop;
 
-		per_read(15x"0100");
+		per_read(15x"0102");
 
 		for i in 0 to 4 loop
 			tb_qei_a <= '0';
@@ -138,7 +138,7 @@ begin
 			wait for 5 us;
 		end loop;
 
-		per_read(15x"0100");
+		per_read(15x"0102");
 
 		for i in 0 to 4 loop
 			tb_qei_a <= '0';
