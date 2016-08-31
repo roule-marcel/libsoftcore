@@ -1,4 +1,4 @@
-PROJECT=srf05
+PROJECT=per_srf05
 
 TOP=$(PROJECT)_tb
 

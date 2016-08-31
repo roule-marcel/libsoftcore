@@ -16,7 +16,7 @@ architecture test_bench of srf05_tb is
 	signal tb_reset : std_logic;
 	signal tb_trigger : std_logic;
 	signal tb_echo : std_logic_vector(TB_SENSOR_NUMBER-1 downto 0);
-	signal tb_echo_duration : reg_file_t(TB_SENSOR_NUMBER-1 downto 0);
+	signal tb_echo_duration : reg_file_unsigned_t(TB_SENSOR_NUMBER-1 downto 0);
 
 	signal simu_ended : boolean := false;
 begin

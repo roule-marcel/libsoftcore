@@ -21,7 +21,7 @@ architecture rtl of srf05 is
 	signal internal_clk : std_logic;
 
 	signal trig_counter : unsigned (15 downto 0) := x"0000";
-	signal echo_counters : reg_file_t(SENSOR_NUMBER-1 downto 0);
+	signal echo_counters : reg_file_unsigned_t(SENSOR_NUMBER-1 downto 0);
 	signal echo_old : std_logic_vector(echo'range);
 begin
 	internal_clk_p : process (clock, reset)

@@ -17,6 +17,6 @@ entity srf05 is
 		trigger : out std_logic;
 		echo : in std_logic_vector(SENSOR_NUMBER-1 downto 0);
 		
-		echo_duration : out reg_file_t(SENSOR_NUMBER-1 downto 0)
+		echo_duration : out reg_file_unsigned_t(SENSOR_NUMBER-1 downto 0)
 	);
 end entity srf05;
